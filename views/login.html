@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Socket.io</title>
+
+    <link rel="stylesheet" href="/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/jquery/dist/jquery.min.js"></script>
+    <script src="/popper.js/dist/umd/popper.min.js"></script>
+    <script src="/bootstrap/dist/js/bootstrap.min.js"></script>
+
+    <script src="/js/main.js"></script>
+
+    <style>
+        .x {
+            min-height: 250px;
+            background-color: blueviolet;
+        }
+
+        .bg {
+            /* background-image: url(/image/unit_bg.png); */
+            /* background-repeat: no-repeat;
+            background-position: center center;
+            width: 100%; */
+            /* Full height */
+            /* height: 100%; */
+            /* Center and scale the image nicely */
+            /* background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover; */
+            background: url(/image/unit_bg.png) no-repeat center center fixed;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+
+            min-height: 800px;
+
+        }
+
+        .login {
+            background-color: rgba(255, 255, 255, 0.61);
+            margin-top: 25%;
+        }
+
+        .login input {
+            background-color: hsla(0, 0%, 100%, 0);
+            border: none;
+            border-bottom: solid 2px rgb(19, 91, 224);
+            width: 100%;
+        }
+
+        .input-container {
+            padding-bottom: 10px;
+            padding-top: 10px;
+        }
+    </style>
+
+    <script>
+
+        function login() {
+
+            let user = document.getElementById("user").value;
+            let password = document.getElementById("password").value;
+
+            if(user.trim() != "" && password.trim() != ""){
+
+                $.ajax({
+                    type: "post" ,
+                    url: "/login" ,
+                    data: {user: user , password: password} ,
+                    success: function (response) {
+                        console.log(`OK: ${response}`);
+                    },
+                    error: function (response) {
+                        console.log(`ERROR: ${response}`);
+                    }
+                });
+
+            }
+
+        }
+
+    </script>
+
+</head>
+
+<body>
+
+    <main>
+        <div class="bg">
+            <div class="container-fluid">
+                <div class="container">
+                    <div class="row">
+                        <div class="offset-md-3 col-md-6 login">
+
+                            <div class="input-container">
+                                <input id="user" name="user" type="text" placeholder="Usuario">
+                            </div>
+                            <div class="input-container">
+                                <input id="password" name="password" type="password" placeholder="Senha">
+                            </div>
+                            <div>
+                                <button onclick="login()" class="btn btn-success float-right">Logar</button>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="text-center footer">
+            <p>FACULDADE TIRADENTES</p>
+        </div>
+    </footer>
+
+</body>
+
+</html>
